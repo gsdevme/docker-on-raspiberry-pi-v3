@@ -14,18 +14,22 @@ sudo reboot
 sudo apt-get update && \
 sudo apt-get upgrade -y
 
-# Remove some packages we likely don't want for a server
-sudo apt-get --purge remove avahi-daemon nano wget pi-bluetooth manpages \
-manpages-dev python python2.7 python3.4 man-db -y
-
 # Install some basic packages
 sudo apt-get install vim vim-syntax-docker dnsmasq git rsync -y
+
+# Reboot
+sudo reboot
 
 # Install docker
 cd /tmp && \
 curl -O https://downloads.hypriot.com/docker-hypriot_1.10.3-1_armhf.deb && \
 sudo dpkg -i docker-hypriot_1.10.3-1_armhf.deb && \
 rm -Rf docker-hypriot_1.10.3-1_armhf.deb && \
-sudo sh -c 'usermod -aG docker $SUDO_USER' && \
+sudo sh -c 'usermod -aG docker $SUDO_USER'
+
+# Reboot
+sudo reboot
+
+# Enable docker
 sudo systemctl enable docker.service
 ```
