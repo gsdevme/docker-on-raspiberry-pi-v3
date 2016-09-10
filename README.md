@@ -15,22 +15,17 @@ sudo apt-get update && \
 sudo apt-get upgrade -y
 
 # Install some basic packages
-sudo apt-get install vim vim-syntax-docker dnsmasq git rsync -y
+sudo apt-get install vim vim-syntax-docker git rsync rpi-update -y
 
 # Reboot
+sudo reboot
+
+sudo rpi-update
+
 sudo reboot
 
 # Install docker
-cd /tmp && \
-curl -O https://downloads.hypriot.com/docker-hypriot_1.10.3-1_armhf.deb && \
-sudo dpkg -i docker-hypriot_1.10.3-1_armhf.deb && \
-rm -Rf docker-hypriot_1.10.3-1_armhf.deb && \
-sudo sh -c 'usermod -aG docker $SUDO_USER'
+curl -sSL https://get.docker.com | sh
 
 # Reboot
 sudo reboot
-
-# Enable docker
-sudo systemctl enable docker.service
-sudo systemctl start docker.service
-```
